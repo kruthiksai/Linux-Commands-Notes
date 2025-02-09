@@ -61,7 +61,7 @@
   
 - `passwd <User Name>` : Set a new password to the user.
 
-#### Key System Files
+- #### Key System Files
 
 - `/etc/passwd` : The /etc/passwd file is one of the key text files that stores user account information, making it accessible to many applications.
   - `username:x:UID:GID:full_name:home_directory:shell`
