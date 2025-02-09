@@ -63,29 +63,29 @@
 
 - #### Key System Files
 
-- `/etc/passwd` : The /etc/passwd file is one of the key text files that stores user account information, making it accessible to many applications.
-  - `username:x:UID:GID:full_name:home_directory:shell`
-    - `username`: The user's login name.
-    - `x`: Historically, this field contained the user's encrypted password, but now it typically contains an x indicating that the password is stored in /etc/shadow.
-    - `UID` (User ID): A unique number assigned to each user.
-    - `GID` (Group ID): The primary group ID.
-    - `full_name`: Often called the GECOS field, this optional field can store additional user information like the user's real name.
-    - `home_directory`: The path to the user's home directory.
-    - `shell`: The program that is started every time the user logs into the system; typically a command-line interpreter like /bin/bash.
-
-- `/etc/shadow` : The /etc/shadow file contains the encrypted password data and other related account security information that is critical and sensitive.
-  - `username:encrypted_password:last_change:min:max:warn:inactive:expire:reserved`
-    - `username`: The user’s login name, matching the entry in /etc/passwd.
-    - `encrypted_password`: The user’s hashed password.
-    - `last_change`: The date of the last password change, expressed as the number of days since January 1, 1970.
-    - `min`: The minimum number of days required between password changes.
-    - `max`: The maximum number of days the password is valid.
-    - `warn`: The number of days before password expiry that the user is warned.
-    - `inactive`: The number of days after a password has expired during which the password can still be changed.
-    - `expire`: The absolute date on which the user account is disabled, expressed as the number of days since January 1, 1970.
-    - `reserved`: A field reserved for future use.
-   
-- `visudo` : Command to edit "/etc/sudoers".
+  - `/etc/passwd` : The /etc/passwd file is one of the key text files that stores user account information, making it accessible to many applications.
+    - `username:x:UID:GID:full_name:home_directory:shell`
+      - `username`: The user's login name.
+      - `x`: Historically, this field contained the user's encrypted password, but now it typically contains an x indicating that the password is stored in /etc/shadow.
+      - `UID` (User ID): A unique number assigned to each user.
+      - `GID` (Group ID): The primary group ID.
+      - `full_name`: Often called the GECOS field, this optional field can store additional user information like the user's real name.
+      - `home_directory`: The path to the user's home directory.
+      - `shell`: The program that is started every time the user logs into the system; typically a command-line interpreter like /bin/bash.
+  
+  - `/etc/shadow` : The /etc/shadow file contains the encrypted password data and other related account security information that is critical and sensitive.
+    - `username:encrypted_password:last_change:min:max:warn:inactive:expire:reserved`
+      - `username`: The user’s login name, matching the entry in /etc/passwd.
+      - `encrypted_password`: The user’s hashed password.
+      - `last_change`: The date of the last password change, expressed as the number of days since January 1, 1970.
+      - `min`: The minimum number of days required between password changes.
+      - `max`: The maximum number of days the password is valid.
+      - `warn`: The number of days before password expiry that the user is warned.
+      - `inactive`: The number of days after a password has expired during which the password can still be changed.
+      - `expire`: The absolute date on which the user account is disabled, expressed as the number of days since January 1, 1970.
+      - `reserved`: A field reserved for future use.
+     
+  - `visudo` : Command to edit "/etc/sudoers".
 
 
 ### Process Management
