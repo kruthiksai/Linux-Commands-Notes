@@ -150,11 +150,11 @@
   - `/dev/<device-name>` → The disk or partition you want to mount.
   - `<mount-point>` → The directory where the device will be mounted.
 
-#### Configuration Files
+- #### Configuration Files
 
-- `/etc/mtab`: This file in Linux is a system file that contains information about currently mounted file systems. It serves as a snapshot of all mounted devices and their mount options at a given moment.
-
-- `/etc/fstab` (File System Table): This is a system configuration file that defines how file systems and storage devices should be automatically mounted at boot time. It ensures that disks, partitions, and network file systems are mounted persistently across reboots.
-  - Need to copy mount file configuration from mtab to fstab
+  - `/etc/mtab`: This file in Linux is a system file that contains information about currently mounted file systems. It serves as a snapshot of all mounted devices and their mount options at a given moment.
+  
+  - `/etc/fstab` (File System Table): This is a system configuration file that defines how file systems and storage devices should be automatically mounted at boot time. It ensures that disks, partitions, and network file systems are mounted persistently across reboots.
+    - Need to copy mount file configuration from mtab to fstab
 
 
