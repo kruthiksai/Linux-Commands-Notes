@@ -3,17 +3,29 @@
 # Basic Linux Commands
 
 - `cd` : stands for "change directory".
+  
 - `cd ..` : Takes you to the previous directory.
+  
 - `cd /` : The / symbol represents the root directory, which is the topmost directory in the hierarchy of a filesystem.
+  
 - `ls` : List all the files and directories in the current directory.
+  
 - `ls -a` : list all the files along with hidden files in the current directory.
+  
 - `mkdir <Directory Name>` : Create a Directory.
+  
 - `touch <File name>` : Create a file.
+  
 - `rm <File name>` : Remove a file.
+  
 - `rm -r <Directory Name>` : Remove a Directory.
+  
 - `cp <File Name> <Directory Name>` : Copy File.
+  
 - `mv <File Name> <Directory Name>` : Move File.
+  
 - `pwd` : View the path in which you are currently in.
+  
 - `vi <Files>` : Opens editor to modify file content.
   - `:wq` : Save and Quit the File.
   - `:q!` : Quit without saving the content.
@@ -28,20 +40,28 @@
 
 ### User and Account Management
 - `whoami` :  The whoami command in Linux is used to display the username of the current user logged into the system.
+  
 - `sudo adduser <Username>` : Create a new user.
+  
 - `su <Username>` : Switch to created user.
+  
 - `chmod 777 <File Name>` : Change User Permission of a File.
   - `7` = 4 (READ) + 2(WRITE)  + 1(EXECUTE).
   - First 7 is for User.
   - Second 7 is for Group.
   - Third 7 is for Others.
+    
 - `chown <user-name>:<group-name> <File Name>` : Change owner of the file.
+  
 - `usermod -aG <Group Name> <User Name>` : Add User to a new group.
+  
 - `usermod -s /sbin/nologin <User Name>` : Remove login permission to user.
+  
 - `usermod -s /bin/bash <User Name>` : Add login permission to User.
+  
 - `passwd <User Name>` : Set a new password to the user.
 
-### Key System Files
+#### Key System Files
 
 - `/etc/passwd` : The /etc/passwd file is one of the key text files that stores user account information, making it accessible to many applications.
   - `username:x:UID:GID:full_name:home_directory:shell`
@@ -64,10 +84,9 @@
     - `inactive`: The number of days after a password has expired during which the password can still be changed.
     - `expire`: The absolute date on which the user account is disabled, expressed as the number of days since January 1, 1970.
     - `reserved`: A field reserved for future use.
-
-### System Administration
-
+   
 - `visudo` : Command to edit "/etc/sudoers".
+
 
 ### Process Management
 
@@ -80,4 +99,62 @@
   - `a`: Show processes for all users.
   - `u`: Display the user/owner of the process along with detailed information such as CPU and memory usage.
   - `x`: Include processes not attached to a terminal.
+
+- `top`: It provides a dynamic, real-time view of running processes. It updates the list of processes and their CPU and memory utilization at a regular interval (default is every 3 seconds).
+
+- `kill -9 <PSID>`: Forcefully terminates the process.
+
+
+
+### Network Debugging Commands
+
+- `ping <destination>`: The command will send packets to the destination and wait for a response to check network connectivity.
+  - `<destination>` can be an IP address (e.g., 8.8.8.8) or a domain name (e.g., google.com).
+
+- `traceroute <destination>`: The command is a network diagnostic tool used to trace the route packets take from your machine to a target destination (such as a website or server). It helps identify network latency, routing issues, and where packets might be getting dropped.
+  - `<destination>` can be an IP address (e.g., 8.8.8.8) or a domain name (e.g., google.com).
+
+- `telnet <hostname or IP> <port>`: The telnet command is a network protocol and command-line tool used to establish a connection to a remote server over port 23 (default) or any other specified port. It allows users to interact with remote services manually, making it useful for testing network connectivity, open ports, and server responses.
+  - `<destination>` can be an IP address (e.g., 8.8.8.8) or a domain name (e.g., google.com).
+
+- `dig [options] [domain]`: This command is a powerful DNS lookup tool used to query Domain Name System (DNS) servers. It retrieves information about domain names, such as IP addresses, name servers, mail servers, and more.
+  - `[domain]` → The domain name or IP address you want to query.
+  - `A` → IPv4 address
+  - `AAAA` → IPv6 address
+  - `MX` → Mail Exchange (Email) servers
+  - `NS` → Name Servers
+  - `CNAME` → Canonical Name (alias)
+
+### Storage Management Commands
+
+- `ip addr`: This command is used in Linux to display and manage network interfaces and their assigned IP addresses. It is part of the ip command suite (iproute2 package) and is a modern replacement for the older ifconfig command.
+
+- `lsblk`: The command is used to list information about block devices, such as hard drives, SSDs, USB drives, and partitions. It provides a tree-like view of storage devices and their mount points.
+
+- `df`: This command will display the amount of disk space used and available on all mounted filesystems.
+- `df -h`: The -h option makes the output more readable by converting the values into human-friendly formats (e.g., KB, MB, GB).
+- `df -T`: The -T option includes the type of each file system.
+
+- `file -s /dev/<Newly added Volume>`: This command is used to check the type of data or file system present on a newly attached volume (disk/partition) in Linux.
+  - `/dev/xvdb: data`
+    - The volume has no file system (raw disk).
+    - You need to format the volume before mounting it.
+
+- `mkfs -t <filesystem_type> /dev/<device-name>`: The mkfs (make filesystem) command is used in Linux to format a block device (disk or partition) with a specified file system type.
+  - It prepares a disk or partition for data storage by creating a new file system.
+  - Warning: Running mkfs on a device erases all data on it!
+  - `<filesystem_type>`: Specify file system type (ext4, xfs, ntfs, etc.).
+  - `<device-name>`: Block device (e.g., /dev/sdb1).
+
+- `mount /dev/<device-name> <mount-point>`: The mount command is used to attach a storage device (disk, partition, or remote file system) to a directory in the Linux file system, making it accessible for use.
+  - `/dev/<device-name>` → The disk or partition you want to mount.
+  - `<mount-point>` → The directory where the device will be mounted.
+
+#### Configuration Files
+
+- `/etc/mtab`: This file in Linux is a system file that contains information about currently mounted file systems. It serves as a snapshot of all mounted devices and their mount options at a given moment.
+
+- `/etc/fstab` (File System Table): This is a system configuration file that defines how file systems and storage devices should be automatically mounted at boot time. It ensures that disks, partitions, and network file systems are mounted persistently across reboots.
+  - Need to copy mount file configuration from mtab to fstab
+
 
