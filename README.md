@@ -157,4 +157,44 @@
   - `/etc/fstab` (File System Table): This is a system configuration file that defines how file systems and storage devices should be automatically mounted at boot time. It ensures that disks, partitions, and network file systems are mounted persistently across reboots.
     - Need to copy mount file configuration from mtab to fstab
 
+- `mount -all`: The `mount -a` command mounts all file systems listed in `/etc/fstab` that are not already mounted.
+  - It is used to test and apply `/etc/fstab` changes without rebooting.
+
+- `xfs_growfs -d <mount-point>`: This command is used to resize an XFS file system without unmounting it, making it ideal for increasing disk space dynamically.
+  - `d` → Expands the file system to use all available space.
+  - `<mount-point>` → The directory where the XFS file system is mounted.
+
+### SSH Server Configuration
+
+- `/etc/ssh/sshd_config`: It is the main configuration file for the OpenSSH server (sshd) in Linux. It controls settings related to remote SSH access, authentication, security, and connection policies.
+  - After making configuration changes, need to restart ssh:
+    - `sudo systemctl restart ssh`
+
+- ### SSH Configuration Parameters
+  
+  - **Port 22**: SSH listens on this port.
+    - Default: `22`
+  - **PermitRootLogin no**: Disables direct root login.
+    - Default: `yes` (but should be `no`)
+  - **PasswordAuthentication yes**: Allows password-based login.
+    - Default: `yes`
+  - **PubkeyAuthentication yes**: Enables key-based authentication.
+    - Default: `yes`
+  - **PermitEmptyPasswords no**: Disables empty password login.
+    - Default: `no`
+  - **AllowUsers user1 user2**: Restricts SSH access to specified users.
+    - Default: Not set
+
+### Adding SSH Key to New User
+
+sudo adduser $NEW_USER # Create the .ssh directory, set ownership and permissions
+sudo mkdir -p /home/$NEW_USER/.ssh
+sudo chmod 700 /home/$NEW_USER/.ssh
+sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh # Create the authorized_keys file, set ownership and permissions
+echo "$SSH_PUBLIC_KEY" | sudo tee /home/$NEW_USER/.ssh/authorized_keys > /dev/null
+sudo chmod 600 /home/$NEW_USER/.ssh/authorized_keys
+sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh/authorized_keys # Restart SSH service to apply changes
+sudo systemctl restart sshd || sudo systemctl restart ssh || sudo service ssh restart
+
+
 
