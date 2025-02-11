@@ -170,7 +170,7 @@
   - After making configuration changes, need to restart ssh:
     - `sudo systemctl restart ssh`
 
-- ### SSH Configuration Parameters
+- #### SSH Configuration Parameters
   
   - **Port 22**: SSH listens on this port.
     - Default: `22`
@@ -187,14 +187,14 @@
 
 ### Adding SSH Key to New User
 
-sudo adduser $NEW_USER # Create the .ssh directory, set ownership and permissions
-sudo mkdir -p /home/$NEW_USER/.ssh
-sudo chmod 700 /home/$NEW_USER/.ssh
-sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh # Create the authorized_keys file, set ownership and permissions
-echo "$SSH_PUBLIC_KEY" | sudo tee /home/$NEW_USER/.ssh/authorized_keys > /dev/null
-sudo chmod 600 /home/$NEW_USER/.ssh/authorized_keys
-sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh/authorized_keys # Restart SSH service to apply changes
-sudo systemctl restart sshd || sudo systemctl restart ssh || sudo service ssh restart
+- sudo adduser $NEW_USER # Create the .ssh directory, set ownership and permissions
+- sudo mkdir -p /home/$NEW_USER/.ssh
+- sudo chmod 700 /home/$NEW_USER/.ssh
+- sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh # Create the authorized_keys file, set ownership and permissions
+- echo "$SSH_PUBLIC_KEY" | sudo tee /home/$NEW_USER/.ssh/authorized_keys > /dev/null
+- sudo chmod 600 /home/$NEW_USER/.ssh/authorized_keys
+- sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.ssh/authorized_keys # Restart SSH service to apply changes
+- sudo systemctl restart sshd || sudo systemctl restart ssh || sudo service ssh restart
 
 
 
